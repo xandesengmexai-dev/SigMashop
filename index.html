@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeShop - Shoe Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><h1><i class="fa-solid fa-shoe-prints"></i> SigMa</h1></div>
+        <div class="cart-box">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="products" id="product-list"></div>
+
+        <div class="checkout">
+            <div class="checkout-title">
+                <div>
+                    <h2>ສິນຄ້າທີ່ເລືອກ</h2>
+                    <p id="bag-count-text">0 ລາຍການ</p>
+                </div>
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+
+            <div class="summary">
+                <div id="cart-list-text" class="bag-items">ຍັງບໍ່ໄດ້ເລືອກສິນຄ້າ</div>
+                <div class="bag-totals">
+                    <div><span>ລາຄາລວມ</span><strong id="subtotal-text">0 Kip</strong></div>
+                    <div id="discount-row" class="discount-row"><span>ສ່ວນຫຼຸດ</span><strong id="discount-text">-0 Kip</strong></div>
+                    <div><span>ຄ່າສົ່ງ</span><strong>ຟຣີ</strong></div>
+                    <div class="bag-total"><span>ຍອດທັງໝົດ</span><strong id="final-total-text">0 Kip</strong></div>
+                </div>
+            </div>
+
+            <div class="promo-box">
+                <label for="promoCode">ສ່ວນຫຼຸດ</label>
+                <div class="promo-control">
+                    <input type="text" id="promoCode" placeholder="ໂຄ້ດສ່ວນຫຼຸດ">
+                    <button type="button" onclick="applyPromoCode()">ໃຊ້ງານ</button>
+                </div>
+                <p id="promo-message"></p>
+            </div>
+
+            <div class="customer-form">
+                <h3>ລາຍລະອຽດການຈັດສົ່ງ</h3>
+                <input type="text" id="custName" placeholder="ຊື່ ແລະ ນາມສະກຸນ">
+                <input type="text" id="custTel" placeholder="ເບີໂທລະສັບ">
+                <textarea id="custLoc" placeholder="ທີ່ຢູ່ຈັດສົ່ງສິນຄ້າ"></textarea>
+            </div>
+
+            <button class="btn-confirm" onclick="confirmPurchase()">
+                <i class="fa-solid fa-check-circle"></i> ເຊັກເອົາ
+            </button>
+            <button class="btn-clear" onclick="resetCart()">ລຶບລາຍການທັງໝົດ</button>
+        </div>
+    </div>
+
+    <template id="category-template">
+        <section class="category-section">
+            <div class="category-header">
+                <h2></h2>
+            </div>
+            <div class="category-products"></div>
+        </section>
+    </template>
+
+    <template id="product-card-template">
+        <div class="card">
+            <div class="product-image">
+                <img src="" alt="">
+            </div>
+            <div class="product-info">
+                <div>
+                    <h3></h3>
+                    <span></span>
+                </div>
+                <p></p>
+            </div>
+            <div class="product-actions">
+                <button type="button">ຊື້</button>
+                <select class="size-select" aria-label="Select foot size">
+                    <option value="">ເລືອກເບີ</option>
+                </select>
+            </div>
+        </div>
+    </template>
+
+    <template id="bag-item-template">
+        <div class="bag-item">
+            <div class="bag-item-number"></div>
+            <div class="bag-item-main">
+                <strong></strong>
+                <span></span>
+            </div>
+            <div class="bag-item-side">
+                <strong></strong>
+                <button type="button" class="remove-item-btn">ລຶບ</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

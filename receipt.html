@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt - SigMa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Lao', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            color: #111;
+        }
+
+        .bill-container {
+            background: white;
+            width: 100%;
+            max-width: 450px;
+            padding: 36px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            color: #111;
+            font-size: 1.8rem;
+            margin-top: 10px;
+        }
+
+        .info-box {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .item-list {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.92rem;
+        }
+
+        .item span:last-child {
+            white-space: nowrap;
+            font-weight: 700;
+        }
+
+        .total-amount {
+            text-align: right;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #111;
+            margin-top: 20px;
+        }
+
+        .action-btns {
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 0;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .btn-print { background-color: #111; }
+        .btn-save { background-color: #333; }
+        .btn-back {
+            background-color: #f7f7f7;
+            color: #111;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn:hover { opacity: 0.88; }
+
+        @media print {
+            .action-btns { display: none; }
+            body { background: white; padding: 0; }
+            .bill-container { box-shadow: none; max-width: 100%; border: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bill-container">
+        <div class="header">
+            <i class="fa-solid fa-circle-check" style="font-size: 3.5rem; color: #111;"></i>
+            <h2>ບິນຮ້ານ SigMa</h2>
+        </div>
+
+        <div id="display-info" class="info-box"></div>
+        <div id="display-items" class="item-list"></div>
+        <div class="total-amount" id="display-total">0 Kip</div>
+
+        <div class="action-btns">
+            <button class="btn btn-print" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> ປິ້ນບິນ
+            </button>
+            <button class="btn btn-save" onclick="window.print()">
+                <i class="fa-solid fa-download"></i> ບັນທືກເປັນ PDF
+            </button>
+            <button class="btn btn-back" onclick="location.href='index.html'">
+                <i class="fa-solid fa-arrow-left"></i> ກັບໄປໜ້າຮ້ານ
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const orderData = JSON.parse(localStorage.getItem('myOrder'));
+
+        if (orderData) {
+            document.getElementById('display-info').innerHTML = `
+                <p><b>Date:</b> ${orderData.date}</p>
+                <p><b>Customer:</b> ${orderData.name}</p>
+                <p><b>Phone:</b> ${orderData.tel}</p>
+                <p><b>Address:</b> ${orderData.loc}</p>
+                ${orderData.promo ? `<p><b>Promotion:</b> ${orderData.promo} (${orderData.discount})</p>` : ''}
+            `;
+
+            const itemsHtml = orderData.items.map(item => `
+                <div class="item">
+                    <span>${item.name} ${item.size ? `(Size ${item.size})` : ''}</span>
+                    <span>${item.price.toLocaleString()} Kip</span>
+                </div>
+            `).join('');
+
+            document.getElementById('display-items').innerHTML = itemsHtml;
+            document.getElementById('display-total').innerText = "Total: " + orderData.total;
+        } else {
+            document.querySelector('.bill-container').innerHTML = "<h2>No order found</h2>";
+        }
+    </script>
+</body>
+</html>
