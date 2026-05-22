@@ -26,9 +26,9 @@ const productsData = [
     { id: 30, category: "Formal Shoes", name: "Brown Oxford Shoes", price: 790000, img: "https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?w=400" },
     { id: 31, category: "Formal Shoes", name: "Office Derby Shoes", price: 710000, img: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=400" },
     { id: 32, category: "Formal Shoes", name: "Classic Monk Straps", price: 860000, img: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=400" },
-    { id: 13, category: "Sandals", name: "Comfort Slide Sandals", price: 250000, img: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400" },
-    { id: 14, category: "Sandals", name: "Beach Strap Sandals", price: 280000, img: "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?w=400" },
-    { id: 33, category: "Sandals", name: "Outdoor Trek Sandals", price: 340000, img: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400" }
+    { id: 13, category: "Limited Edition", name: "Comfort Slide Sandals", price: 250000, img: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400" },
+    { id: 14, category: "Limited Edition", name: "Beach Strap Sandals", price: 280000, img: "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?w=400" },
+    { id: 33, category: "Limited Edition", name: "Outdoor Trek Sandals", price: 340000, img: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400" }
 ];
 
 const shoeSizes = [36, 37, 38, 39, 40, 41, 42, 43, 44, 45];
