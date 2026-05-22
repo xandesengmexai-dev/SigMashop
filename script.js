@@ -16,7 +16,7 @@ const productsData = [
     { id: 7, category: "Sport Shoes", name: "Training Shoes", price: 520000, img: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400" },
     { id: 8, category: "Sport Shoes", name: "Red Sport Shoes", price: 610000, img: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=400" },
     { id: 24, category: "Sport Shoes", name: "Gym Flex Trainers", price: 570000, img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400" },
-    { id: 25, category: "Sport Shoes", name: " Running Sport Casual", price: 680000, img: "https://sc04.alicdn.com/kf/H4a3db25d4ab6403982124f024329f3e7C.jpg" },
+    { id: 25, category: "Sport Shoes", name: " Running Sport Casual", price: 680000, img: "https://s.alicdn.com/@sc04/kf/H0c1f888562134e18987dbf5ae7802318d.jpg?avif=close&webp=close" },
     { id: 9, category: "Football Shoes", name: "Firm Ground Football Boots", price: 690000, img: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=400" },
     { id: 10, category: "Football Shoes", name: "Turf Football Shoes", price: 640000, img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400" },
     { id: 27, category: "Football Shoes", name: "Speed Control Boots", price: 720000, img: "https://images.unsplash.com/photo-1529810313688-44ea1c2d81d3?w=400" },
