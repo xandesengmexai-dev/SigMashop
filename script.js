@@ -1,5 +1,5 @@
 const productsData = [
-    { id: 1, category: "Casual Shoes", name: "White Casual Shoes", price: 480000, img: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=400" },
+    { id: 1, category: "Casual Shoes", name: "Red Casual Shoes", price: 480000, img: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=400" },
     { id: 2, category: "Casual Shoes", name: "Classic Canvas Shoes", price: 390000, img: "https://images.unsplash.com/photo-1521093470119-a3acdc43374a?w=400" },
     { id: 15, category: "Casual Shoes", name: "Everyday Low Sneakers", price: 430000, img: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=400" },
     { id: 16, category: "Casual Shoes", name: "Black Casual Sneakers", price: 510000, img: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400" },
