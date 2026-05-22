@@ -10,7 +10,7 @@ const productsData = [
     { id: 5, category: "Runner Shoes", name: "Lightweight Running Shoes", price: 620000, img: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400" },
     { id: 6, category: "Runner Shoes", name: "Premium Walking Shoes", price: 780000, img: "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400" },
     { id: 21, category: "Runner Shoes", name: "Marathon Runner Pro", price: 840000, img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400" },
-    { id: 22, category: "Runner Shoes", name: "Daily Jogger Shoes", price: 590000, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" },
+    { id: 22, category: "Runner Shoes", name: "Li-Ning Shoes", price: 590000, img: "https://sportscorner.qa/media/catalog/product/cache/79d48e83850b5fb72f5e01b7ff7455ae/Y/K/YKFW080_1_3_d75c.PNG" },
     { id: 23, category: "Runner Shoes", name: "Trail Runner Grip", price: 760000, img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400" },
     { id: 36, category: "Runner Shoes", name: "CHICMARK Mens Lightweight", price: 810000, img: "https://m.media-amazon.com/images/I/71NRut66IlL._AC_SL1500_.jpg" },
     { id: 7, category: "Sport Shoes", name: "Training Shoes", price: 520000, img: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400" },
