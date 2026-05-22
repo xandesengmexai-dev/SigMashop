@@ -12,7 +12,7 @@ const productsData = [
     { id: 21, category: "Runner Shoes", name: "Marathon Runner Pro", price: 840000, img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400" },
     { id: 22, category: "Runner Shoes", name: "Daily Jogger Shoes", price: 590000, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" },
     { id: 23, category: "Runner Shoes", name: "Trail Runner Grip", price: 760000, img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400" },
-    { id: 36, category: "Runner Shoes", name: "Cloud Sprint Shoes", price: 810000, img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400" },
+    { id: 36, category: "Runner Shoes", name: "CHICMARK Mens Lightweight", price: 810000, img: "https://m.media-amazon.com/images/I/71NRut66IlL._AC_SL1500_.jpg" },
     { id: 7, category: "Sport Shoes", name: "Training Shoes", price: 520000, img: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400" },
     { id: 8, category: "Sport Shoes", name: "Red Sport Shoes", price: 610000, img: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=400" },
     { id: 24, category: "Sport Shoes", name: "Gym Flex Trainers", price: 570000, img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400" },
