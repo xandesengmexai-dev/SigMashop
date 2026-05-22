@@ -20,7 +20,7 @@ const productsData = [
     { id: 9, category: "Football Shoes", name: "Firm Ground Football Boots", price: 690000, img: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=400" },
     { id: 10, category: "Football Shoes", name: "Turf Football Shoes", price: 640000, img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400" },
     { id: 27, category: "Football Shoes", name: "Speed Control Boots", price: 720000, img: "https://images.unsplash.com/photo-1529810313688-44ea1c2d81d3?w=400" },
-    { id: 28, category: "Football Shoes", name: "Indoor Futsal Shoes", price: 580000, img: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?w=400" },
+    { id: 28, category: "Football Shoes", name: "Cristiano Ronaldo's new Nike", price: 580000, img: "https://www.thesun.co.uk/wp-content/uploads/2018/06/boots1.jpg?strip=all&w=563" },
     { id: 11, category: "Formal Shoes", name: "Leather Loafers", price: 690000, img: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=400" },
     { id: 12, category: "Formal Shoes", name: "Egoss Comfortable", price: 740000, img: "https://egoss.in/cdn/shop/files/197013_BLACK.jpg?v=1753878625&width=800" },
     { id: 30, category: "Formal Shoes", name: "Formal Oxford Shoes", price: 790000, img: "https://redtape.com/cdn/shop/files/RTE5642B_1.jpg?v=1756810040" },
