@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt - NOVA</title>
+    <title>ໃບບິນ - NOVA</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,161 +15,477 @@
         }
 
         body {
-            background-color: #f7f7f7;
+            min-height: 100vh;
+            background: #ffffff;
             display: flex;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 34px 18px;
             color: #111;
+        }
+
+        .receipt-page {
+            width: 100%;
+            max-width: 430px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .success-badge {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #14a95d, #32d481);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+            border: 6px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 18px 40px rgba(20, 169, 93, 0.28);
         }
 
         .bill-container {
-            background: white;
             width: 100%;
-            max-width: 450px;
-            padding: 36px;
+            background: #ffffff;
+            padding: 26px 24px 24px;
             border: 1px solid #e5e7eb;
-            border-radius: 4px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            box-shadow: 0 22px 48px rgba(17, 24, 39, 0.16);
         }
 
-        .header {
+        .store-header {
             text-align: center;
-            margin-bottom: 30px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #111;
         }
 
-        .header h2 {
+        .store-header h1 {
+            font-size: 1.65rem;
+            letter-spacing: 0;
+            line-height: 1.2;
+        }
+
+        .store-header p {
+            margin-top: 4px;
+            color: #555;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px 14px;
+            margin-top: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px dashed #8c8c8c;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .meta-grid .full {
+            grid-column: 1 / -1;
+        }
+
+        .label {
+            color: #555;
+        }
+
+        .value {
+            font-weight: 700;
             color: #111;
-            font-size: 1.8rem;
-            margin-top: 10px;
+            overflow-wrap: anywhere;
         }
 
-        .info-box {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 15px;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .item-list {
+        .items-table {
             width: 100%;
-            margin-bottom: 20px;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.82rem;
         }
 
-        .item {
-            display: flex;
-            justify-content: space-between;
-            gap: 14px;
-            padding: 10px 0;
-            border-bottom: 1px solid #e5e7eb;
-            font-size: 0.92rem;
-        }
-
-        .item span:last-child {
-            white-space: nowrap;
+        .items-table th {
+            padding: 7px 0;
+            border-bottom: 1px solid #111;
+            text-align: left;
             font-weight: 700;
         }
 
-        .total-amount {
+        .items-table td {
+            padding: 8px 0;
+            border-bottom: 1px dashed #c7c0aa;
+            vertical-align: top;
+        }
+
+        .items-table th:nth-child(1),
+        .items-table td:nth-child(1) {
+            width: 28px;
+        }
+
+        .items-table th:nth-child(3),
+        .items-table td:nth-child(3) {
+            width: 92px;
             text-align: right;
-            font-size: 1.6rem;
-            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .item-size {
+            display: block;
+            color: #666;
+            font-size: 0.76rem;
+            margin-top: 2px;
+        }
+
+        .summary {
+            margin-top: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px dashed #8c8c8c;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 4px 0;
+            font-size: 0.86rem;
+        }
+
+        .summary-row.total {
+            margin-top: 6px;
+            padding-top: 9px;
+            border-top: 2px solid #111;
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+
+        .qr-section {
+            margin: 16px auto 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            text-align: center;
+        }
+
+        .qr-section img {
+            width: 116px;
+            height: 116px;
+            object-fit: contain;
+            background: white;
+            border: 4px solid white;
+        }
+
+        .qr-section strong {
             color: #111;
-            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        .qr-section span,
+        .thank-you {
+            color: #555;
+            font-size: 0.76rem;
+        }
+
+        .thank-you {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #8c8c8c;
+            text-align: center;
+            line-height: 1.6;
         }
 
         .action-btns {
-            margin-top: 35px;
+            width: 100%;
+            margin-top: 26px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .action-item {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            gap: 8px;
+            min-width: 82px;
+            color: #28362f;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: center;
         }
 
         .btn {
-            width: 100%;
-            padding: 15px;
+            width: 62px;
+            height: 62px;
             border: none;
-            border-radius: 0;
-            font-size: 0.95rem;
-            font-weight: bold;
+            border-radius: 50%;
+            font-size: 1.18rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: 0.2s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
             color: white;
-            text-transform: uppercase;
         }
 
-        .display-total {
-            color: Green;
-        } 
+        .btn-print {
+            background: linear-gradient(145deg, #17202a, #34495e);
+            box-shadow: 0 12px 24px rgba(23, 32, 42, 0.22);
+        }
 
-        .btn-print { background-color: #111; }
-        .btn-save { background-color: #333; }
+        .btn-save {
+            background: linear-gradient(145deg, #0f9b54, #24c875);
+            box-shadow: 0 12px 24px rgba(15, 155, 84, 0.24);
+        }
+
         .btn-back {
-            background-color: #f7f7f7;
-            color: #111;
-            border: 1px solid #d1d5db;
+            background: linear-gradient(145deg, #ffffff, #eef4f1);
+            color: #17202a;
+            border: 1px solid #d4e4dc;
+            box-shadow: 0 12px 24px rgba(23, 32, 42, 0.12);
         }
 
-        .btn:hover { opacity: 0.88; }
+        .btn:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 420px) {
+            .bill-container {
+                padding: 24px 18px 22px;
+            }
+
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-btns {
+                gap: 12px;
+            }
+        }
 
         @media print {
-            .action-btns { display: none; }
-            body { background: white; padding: 0; }
-            .bill-container { box-shadow: none; max-width: 100%; border: none; }
+            @page {
+                size: 80mm auto;
+                margin: 5mm;
+            }
+
+            .success-badge,
+            .action-btns {
+                display: none;
+            }
+
+            html,
+            body {
+                width: 80mm;
+                min-height: auto;
+                background: white;
+                padding: 0;
+            }
+
+            body {
+                display: block;
+                color: black;
+            }
+
+            .receipt-page {
+                display: block;
+                width: 100%;
+                max-width: none;
+            }
+
+            .bill-container {
+                width: 100%;
+                padding: 0;
+                background: white;
+                border: none;
+                box-shadow: none;
+            }
+
+            .store-header,
+            .meta-grid,
+            .items-table th,
+            .items-table td,
+            .summary,
+            .summary-row.total,
+            .thank-you {
+                border-color: black;
+            }
+
+            .qr-section img {
+                width: 96px;
+                height: 96px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bill-container">
-        <div class="header">
-            <i class="fa-solid fa-circle-check" style="font-size: 3.5rem; color: #111;"></i>
-            <h2>ບິນຮ້ານ NOVA</h2>
+    <main class="receipt-page">
+        <div class="success-badge" aria-label="ຄຳສັ່ງຊື້ຖືກຕ້ອງ">
+            <i class="fa-solid fa-check"></i>
         </div>
 
-        <div id="display-info" class="info-box"></div>
-        <div id="display-items" class="item-list"></div>
-        <div class="total-amount" id="display-total">0 Kip</div>
+        <div class="bill-container">
+            <header class="store-header">
+                <h1>NOVA SHOP</h1>
+                <p>ຮ້ານຂາຍເກີບ ແລະ ແຟຊັນ</p>
+                <p>ໂທ: 020 5555 5555</p>
+            </header>
+
+            <section class="meta-grid" id="display-info"></section>
+
+            <table class="items-table" aria-label="ລາຍການສິນຄ້າ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ລາຍການ</th>
+                        <th>ລາຄາ</th>
+                    </tr>
+                </thead>
+                <tbody id="display-items"></tbody>
+            </table>
+
+            <section class="summary" id="display-summary"></section>
+
+            <div class="qr-section">
+                <img src="NOVA.png" alt="ຄິວອາສຳລັບກວດສອບໃບບິນ NOVA">
+                <strong>ສະແກນເພື່ອກວດສອບໃບບິນ</strong>
+                <span id="qr-receipt-code">NOVA</span>
+            </div>
+
+            <p class="thank-you">
+                ຂອບໃຈທີ່ອຸດໜູນ NOVA SHOP<br>
+                ກະລຸນາເກັບໃບບິນນີ້ໄວ້ເພື່ອກວດສອບ
+            </p>
+        </div>
 
         <div class="action-btns">
-            <button class="btn btn-print" onclick="window.print()">
-                <i class="fa-solid fa-print"></i> ປິ້ນບິນ
-            </button>
-            <button class="btn btn-save" onclick="window.print()">
-                <i class="fa-solid fa-download"></i> ບັນທືກເປັນ PDF
-            </button>
-            <button class="btn btn-back" onclick="location.href='index.html'">
-                <i class="fa-solid fa-arrow-left"></i> ກັບໄປໜ້າຮ້ານ
-            </button>
+            <div class="action-item">
+                <button class="btn btn-print" onclick="window.print()" title="ພິມ" aria-label="ພິມໃບບິນ">
+                    <i class="fa-solid fa-print"></i>
+                </button>
+                <span>ພິມ</span>
+            </div>
+            <div class="action-item">
+                <button class="btn btn-save" onclick="window.print()" title="ບັນທຶກ PDF" aria-label="ບັນທຶກໃບບິນເປັນ PDF">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </button>
+                <span>ບັນທຶກ PDF</span>
+            </div>
+            <div class="action-item">
+                <button class="btn btn-back" onclick="location.href='index.html'" title="ກັບຄືນ" aria-label="ກັບໄປໜ້າຫຼັກ">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <span>ກັບຄືນ</span>
+            </div>
         </div>
-    </div>
+    </main> 
 
     <script>
         const orderData = JSON.parse(localStorage.getItem('myOrder'));
+        const money = new Intl.NumberFormat('en-US');
+
+        function parseMoney(value) {
+            return Number(String(value || '').replace(/[^\d.-]/g, '')) || 0;
+        }
+
+        function makeReceiptNo(order) {
+            if (order.receiptNo) {
+                return order.receiptNo;
+            }
+
+            const now = new Date();
+            const stamp = [
+                now.getFullYear(),
+                String(now.getMonth() + 1).padStart(2, '0'),
+                String(now.getDate()).padStart(2, '0'),
+                String(now.getHours()).padStart(2, '0'),
+                String(now.getMinutes()).padStart(2, '0'),
+                String(now.getSeconds()).padStart(2, '0')
+            ].join('');
+
+            order.receiptNo = `NOVA-${stamp}`;
+            localStorage.setItem('myOrder', JSON.stringify(order));
+            return order.receiptNo;
+        }
 
         if (orderData) {
+            const receiptNo = makeReceiptNo(orderData);
+            const subtotal = orderData.items.reduce((sum, item) => sum + Number(item.price || 0), 0);
+            const discount = Math.abs(parseMoney(orderData.discount));
+            const total = Math.max(subtotal - discount, 0);
+
             document.getElementById('display-info').innerHTML = `
-                <p><b>Date:</b> ${orderData.date}</p>
-                <p><b>Customer:</b> ${orderData.name}</p>
-                <p><b>Phone:</b> ${orderData.tel}</p>
-                <p><b>Address:</b> ${orderData.loc}</p>
-                ${orderData.promo ? `<p><b>Promotion:</b> ${orderData.promo} (${orderData.discount})</p>` : ''}
+                <div>
+                    <div class="label">ເລກໃບບິນ</div>
+                    <div class="value">${receiptNo}</div>
+                </div>
+                <div>
+                    <div class="label">ວັນທີ</div>
+                    <div class="value">${orderData.date}</div>
+                </div>
+                <div>
+                    <div class="label">ລູກຄ້າ</div>
+                    <div class="value">${orderData.name}</div>
+                </div>
+                <div>
+                    <div class="label">ເບີໂທ</div>
+                    <div class="value">${orderData.tel}</div>
+                </div>
+                <div class="full">
+                    <div class="label">ທີ່ຢູ່</div>
+                    <div class="value">${orderData.loc || '-'}</div>
+                </div>
             `;
 
-            const itemsHtml = orderData.items.map(item => `
-                <div class="item">
-                    <span>${item.name} ${item.size ? `(Size ${item.size})` : ''}</span>
-                    <span>${item.price.toLocaleString()} Kip</span>
-                </div>
+            document.getElementById('display-items').innerHTML = orderData.items.map((item, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>
+                        ${item.name}
+                        ${item.size ? `<span class="item-size">ເບີ ${item.size}</span>` : ''}
+                    </td>
+                    <td>${money.format(item.price)} Kip</td>
+                </tr>
             `).join('');
 
-            document.getElementById('display-items').innerHTML = itemsHtml;
-            document.getElementById('display-total').innerText = "Total: " + orderData.total;
+            document.getElementById('display-summary').innerHTML = `
+                <div class="summary-row">
+                    <span>ລວມລາຄາ</span>
+                    <strong>${money.format(subtotal)} Kip</strong>
+                </div>
+                ${discount ? `
+                    <div class="summary-row">
+                        <span>ສ່ວນຫຼຸດ ${orderData.promo ? `(${orderData.promo})` : ''}</span>
+                        <strong>-${money.format(discount)} Kip</strong>
+                    </div>
+                ` : ''}
+                <div class="summary-row total">
+                    <span>ລວມທັງໝົດ</span>
+                    <strong>${money.format(total)} Kip</strong>
+                </div>
+            `;
+
+            document.getElementById('qr-receipt-code').textContent = `ລະຫັດຢືນຢັນ: ${receiptNo}`;
         } else {
-            document.querySelector('.bill-container').innerHTML = "<h2>No order found</h2>";
+            document.querySelector('.receipt-page').innerHTML = `
+                <div class="bill-container">
+                    <header class="store-header">
+                        <h1>NOVA SHOP</h1>
+                        <p>ບໍ່ພົບຄຳສັ່ງຊື້</p>
+                    </header>
+                    <p class="thank-you">ກະລຸນາກັບໄປສັ່ງຊື້ກ່ອນ.</p>
+                </div>
+                <div class="action-btns">
+                    <div class="action-item">
+                        <button class="btn btn-back" onclick="location.href='index.html'" title="ກັບຄືນ" aria-label="ກັບໄປໜ້າຫຼັກ">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span>ກັບຄືນ</span>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>

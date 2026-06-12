@@ -4,7 +4,7 @@ const productsData = [
     { id: 15, category: "Casual Shoes", name: "Everyday Low Sneakers", price: 430000, img: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=400" },
     { id: 16, category: "Casual Shoes", name: "Black Casual Sneakers", price: 510000, img: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400" },
     { id: 17, category: "Casual Shoes", name: "Retro Street Shoes", price: 560000, img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=400" },
-    { id: 3, category: "Special Edition", name: "invincible Collab:ເກີບບັກຄົງກະພັນ", price: 920000, img: "https://i.redd.it/custom-invincible-shoes-v0-92zb5k7k33qe1.jpg?width=2048&format=pjpg&auto=webp&s=23709d62d7865df2c1b6ceab523a824ed12e7e0f" },
+    { id: 3, category: "Special Edition", name: "invincible Collab:ເກີບບັກຄົງກະບື", price: 920000, img: "https://i.redd.it/custom-invincible-shoes-v0-92zb5k7k33qe1.jpg?width=2048&format=pjpg&auto=webp&s=23709d62d7865df2c1b6ceab523a824ed12e7e0f" },
     { id: 4, category: "Special Edition", name: "Limited Colorway Sneakers", price: 980000, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" },
     { id: 18, category: "Special Edition", name: "Manga Print Sneakers", price: 890000, img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400" },
     { id: 5, category: "Runner Shoes", name: "Lightweight Running Shoes", price: 620000, img: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400" },
@@ -26,13 +26,13 @@ const productsData = [
     { id: 30, category: "Formal Shoes", name: "Formal Oxford Shoes", price: 790000, img: "https://redtape.com/cdn/shop/files/RTE5642B_1.jpg?v=1756810040" },
     { id: 31, category: "Formal Shoes", name: "Alberto Torresi", price: 710000, img: "https://www.albertotorresi.com/cdn/shop/files/DSC_1033.jpg?v=1754295384" },
     { id: 32, category: "Formal Shoes", name: "Bacca Bucci VICTORIA", price: 860000, img: "https://baccabucci.com/cdn/shop/products/MG_7666-min_1e99cd5a-e357-41a4-8048-56df9c9b30cc.jpg?v=1774854994&width=1800" },
-    { id: 13, category: "Limited Edition", name: "GOLDCITY ช้างบุก รุ่น D409", price: 25000000, img: "https://mpics-cdn-acc.mgronline.com/pics/Images/564000003615401.JPEG.webp" },
+    { id: 13, category: "Limited Edition", name: "GOLDCITY D409", price: 25000000, img: "https://mpics-cdn-acc.mgronline.com/pics/Images/564000003615401.JPEG.webp" },
     { id: 14, category: "Limited Edition", name: "PUMA", price: 28000000, img: "https://stylebyattractions.com/cdn/shop/files/WhatsAppImage2024-09-10at2.30.29PM_1.jpg?v=1725965615" },
     { id: 33, category: "Limited Edition", name: "YAMADA water Guard", price: 340000, img: "https://img.th.my-best.com/product_images/dcb2d26a5a90323f69af0a373c16e09e.jpeg?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=90419311f3eed356c8cc96a184280a27" }
 ];
 
 const shoeSizes = [36, 37, 38, 39, 40, 41, 42, 43, 44, 45];
-const emptyBagText = "ຍັງບໍ່ໄດ້ເລືອກສິນຄ້າ";
+const localizedEmptyBagText = "ຍັງບໍ່ໄດ້ເລືອກສິນຄ້າ";
 const basket = [];
 let promoCode = "";
 
@@ -40,6 +40,13 @@ const productList = document.getElementById('product-list');
 const categoryTemplate = document.getElementById('category-template');
 const productCardTemplate = document.getElementById('product-card-template');
 const bagItemTemplate = document.getElementById('bag-item-template');
+const cartMoreButton = document.getElementById('cart-more-btn');
+let isCartListExpanded = false;
+
+cartMoreButton.addEventListener('click', () => {
+    isCartListExpanded = !isCartListExpanded;
+    renderBagItems();
+});
 
 renderProducts();
 renderUI();
@@ -77,7 +84,7 @@ function createProductCard(product) {
     shoeSizes.forEach(size => {
         const option = document.createElement('option');
         option.value = size;
-        option.textContent = `Foot size ${size}`;
+        option.textContent = `ເບີ ${size}`;
         sizeSelect.appendChild(option);
     });
 
@@ -87,7 +94,7 @@ function createProductCard(product) {
 
 function addToCart(product, sizeSelect) {
     if (!sizeSelect.value) {
-        alert("ເລືອກເບີເກີບ.");
+        alert("ກະລຸນາເລືອກເບີເກີບ.");
         return;
     }
 
@@ -105,7 +112,6 @@ function renderUI() {
     const discount = promoCode === "LAOS2024" ? Math.round(subtotal * 0.1) : 0;
     const total = Math.max(subtotal - discount, 0);
 
-    document.getElementById('cart-count').innerText = basket.length;
     document.getElementById('bag-count-text').innerText = `${basket.length} ລາຍການ`;
     document.getElementById('subtotal-text').innerText = `${subtotal.toLocaleString()} Kip`;
     document.getElementById('discount-text').innerText = `-${discount.toLocaleString()} Kip`;
@@ -119,8 +125,8 @@ function applyPromoCode() {
     const promoMessage = document.getElementById('promo-message');
 
     promoCode = code === "LAOS2024" ? code : "";
-    promoMessage.textContent = code && !promoCode ? "ໂຄ້ດຍໍ່ຖືກຕ້ອງ." : (promoCode ? "LAOS2024: ຫຼຸດ5%" : "");
-    promoMessage.className = promoCode ? "ສຳເລັດ" : "ບໍ່ພົບ";
+    promoMessage.textContent = code && !promoCode ? "ລະຫັດສ່ວນຫຼຸດບໍ່ຖືກຕ້ອງ." : (promoCode ? "LAOS2024: ຫຼຸດ 10%" : "");
+    promoMessage.className = promoCode ? "success" : "error";
     renderUI();
 }
 
@@ -128,13 +134,30 @@ function renderBagItems() {
     const cartList = document.getElementById('cart-list-text');
 
     if (basket.length === 0) {
-        cartList.textContent = emptyBagText;
+        cartList.textContent = localizedEmptyBagText;
+        cartList.classList.remove('has-overflow', 'is-collapsed');
+        cartMoreButton.classList.add('is-hidden');
+        cartMoreButton.classList.remove('is-expanded');
         return;
+    }
+
+    if (basket.length <= 2) {
+        isCartListExpanded = false;
     }
 
     const bagItems = document.createDocumentFragment();
     basket.forEach((item, index) => bagItems.appendChild(createBagItem(item, index)));
     cartList.replaceChildren(bagItems);
+    updateCartMoreButton(cartList);
+}
+
+function updateCartMoreButton(cartList) {
+    const hasOverflowItems = basket.length > 2;
+
+    cartList.classList.toggle('has-overflow', hasOverflowItems);
+    cartList.classList.toggle('is-collapsed', hasOverflowItems && !isCartListExpanded);
+    cartMoreButton.classList.toggle('is-hidden', !hasOverflowItems);
+    cartMoreButton.classList.toggle('is-expanded', isCartListExpanded);
 }
 
 function createBagItem(item, index) {
@@ -142,7 +165,7 @@ function createBagItem(item, index) {
 
     bagItem.querySelector('.bag-item-number').textContent = index + 1;
     bagItem.querySelector('.bag-item-main strong').textContent = item.name;
-    bagItem.querySelector('.bag-item-main span').textContent = `Size ${item.size}`;
+    bagItem.querySelector('.bag-item-main span').textContent = `ເບີ ${item.size}`;
     bagItem.querySelector('.bag-item-side strong').textContent = `${item.price.toLocaleString()} Kip`;
     bagItem.querySelector('button').addEventListener('click', () => removeCartItem(index));
 
@@ -155,7 +178,7 @@ function removeCartItem(index) {
 }
 
 function resetCart() {
-    if (confirm("ລືບລາຍການທັງໝົດ?")) {
+    if (confirm("ຕ້ອງການລ້າງລາຍການທັງໝົດບໍ?")) {
         basket.length = 0;
         promoCode = "";
         document.getElementById('promoCode').value = "";
@@ -172,7 +195,7 @@ function confirmPurchase() {
     const discount = document.getElementById('discount-text').innerText;
 
     if (!name || !tel || basket.length === 0) {
-        alert("ກະລຸນາໃສ່ຂໍ້ມູນໃຫ້ຄົບ.");
+        alert("ກະລຸນາໃສ່ຂໍ້ມູນໃຫ້ຄົບ ແລະ ເລືອກສິນຄ້າ.");
         return;
     }
 

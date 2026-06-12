@@ -10,57 +10,88 @@
 </head>
 <body>
     <header>
-        <div class="logo"><h1><i class="fa-solid fa-shoe-prints"></i> NOVA</h1></div>
-        <div class="cart-box">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span id="cart-count">0</span>
+        <div class="logo" aria-label="NOVA shoe store">
+            <div class="logo-mark">
+                <span>N</span>
+                <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+            <div class="logo-text">
+                <strong>NOVA</strong>
+                <small>ຮ້ານເກີບ</small>
+            </div>
         </div>
     </header>
 
     <div class="container">
         <div class="products" id="product-list"></div>
 
-        <div class="checkout">
+        <div class="checkout" id="cart">
             <div class="checkout-title">
                 <div>
-                    <h2>ສິນຄ້າທີ່ເລືອກ</h2>
+                    <h2>ກະຕ່າສິນຄ້າ</h2>
                     <p id="bag-count-text">0 ລາຍການ</p>
                 </div>
                 <i class="fa-solid fa-bag-shopping"></i>
             </div>
 
-            <div class="summary">
+            <div class="checkout-bubble summary">
+                <div class="bubble-heading">
+                    <i class="fa-solid fa-list-check"></i>
+                    <h3>ລາຍການສິນຄ້າ</h3>
+                </div>
                 <div id="cart-list-text" class="bag-items">ຍັງບໍ່ໄດ້ເລືອກສິນຄ້າ</div>
+                <button type="button" id="cart-more-btn" class="cart-more-btn is-hidden">
+                    ເພິ່ມເຈີມ
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
                 <div class="bag-totals">
                     <div><span>ລາຄາລວມ</span><strong id="subtotal-text">0 Kip</strong></div>
                     <div id="discount-row" class="discount-row"><span>ສ່ວນຫຼຸດ</span><strong id="discount-text">-0 Kip</strong></div>
                     <div><span>ຄ່າສົ່ງ</span><strong>ຟຣີ</strong></div>
-                    <div class="bag-total"><span>ຍອດທັງໝົດ</span><strong id="final-total-text">0 Kip</strong></div>
+                    <div class="bag-total"><span>ລວມທັງໝົດ</span><strong id="final-total-text">0 Kip</strong></div>
                 </div>
             </div>
 
-            <div class="promo-box">
-                <label for="promoCode">ສ່ວນຫຼຸດ</label>
+            <div class="checkout-bubble promo-box">
+                <div class="bubble-heading">
+                    <i class="fa-solid fa-tags"></i>
+                    <h3>ໂປຣໂມຊັນ</h3>
+                </div>
+                <label for="promoCode">ລະຫັດສ່ວນຫຼຸດ</label>
                 <div class="promo-control">
-                    <input type="text" id="promoCode" placeholder="ໂຄ້ດສ່ວນຫຼຸດ">
-                    <button type="button" onclick="applyPromoCode()">ໃຊ້ງານ</button>
+                    <input type="text" id="promoCode" placeholder="ໃສ່ລະຫັດສ່ວນຫຼຸດ">
+                    <button type="button" onclick="applyPromoCode()">ນຳໃຊ້</button>
                 </div>
                 <p id="promo-message"></p>
             </div>
 
-            <div class="customer-form">
-                <h3>ລາຍລະອຽດການຈັດສົ່ງ</h3>
+            <div class="checkout-bubble customer-form">
+                <div class="bubble-heading">
+                    <i class="fa-solid fa-user"></i>
+                    <h3>ຂໍ້ມູນຜູ້ຮັບ</h3>
+                </div>
                 <input type="text" id="custName" placeholder="ຊື່ ແລະ ນາມສະກຸນ">
                 <input type="text" id="custTel" placeholder="ເບີໂທລະສັບ">
                 <textarea id="custLoc" placeholder="ທີ່ຢູ່ຈັດສົ່ງສິນຄ້າ"></textarea>
             </div>
 
-            <button class="btn-confirm" onclick="confirmPurchase()">
-                <i class="fa-solid fa-check-circle"></i> ເຊັກເອົາ
-            </button>
-            <button class="btn-clear" onclick="resetCart()">ລຶບລາຍການທັງໝົດ</button>
+            <div class="checkout-bubble checkout-actions">
+                <div class="bubble-heading">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <h3>ຢືນຢັນການສັ່ງຊື້</h3>
+                </div>
+                <button class="btn-confirm" onclick="confirmPurchase()">
+                    <i class="fa-solid fa-check-circle"></i> ສັ່ງຊື້ດຽວນີ້
+                </button>
+                <button class="btn-clear" onclick="resetCart()">ລ້າງລາຍການທັງໝົດ</button>
+            </div>
         </div>
     </div>
+
+    <section class="about-section" id="about">
+        <h2>ກ່ຽວກັບພວກເຮົາ</h2>
+        <p>NOVA ແມ່ນຮ້ານຂາຍເກີບສຳລັບເກີບທຳມະດາ, ເກີບກິລາ, ເກີບແລ່ນ, ເກີບເຕະບານ, ເກີບທາງການ ແລະ ເກີບລຸ້ນຈຳກັດ.</p>
+    </section>
 
     <template id="category-template">
         <section class="category-section">
@@ -85,7 +116,7 @@
             </div>
             <div class="product-actions">
                 <button type="button">ຊື້</button>
-                <select class="size-select" aria-label="Select foot size">
+                <select class="size-select" aria-label="ເລືອກຂະໜາດເກີບ">
                     <option value="">ເລືອກເບີ</option>
                 </select>
             </div>
@@ -101,7 +132,7 @@
             </div>
             <div class="bag-item-side">
                 <strong></strong>
-                <button type="button" class="remove-item-btn">ລຶບ</button>
+                <button type="button" class="remove-item-btn">ລົບ</button>
             </div>
         </div>
     </template>
