@@ -7,37 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* สไตล์สำหรับตกแต่งแถบปุ่มหมวดหมู่ด้านบน */
-        .category-filter-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            grid-column: 1 / -1;
-            padding: 0 4px;
-        }
-        .filter-btn {
-            padding: 8px 18px;
-            background-color: #f3f4f6;
-            border: 1px solid #e5e7eb;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #4b5563;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .filter-btn:hover {
-            background-color: #e5e7eb;
-            color: #111827;
-        }
-        .filter-btn.active {
-            background-color: #111827;
-            color: #ffffff;
-            border-color: #111827;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -54,9 +23,6 @@
     </header>
 
     <div class="container">
-        <!-- แถบแสดงปุ่มเลือกหมวดหมู่ที่เพิ่มเข้ามาใหม่ ด้านบนสุดของโซนสินค้า -->
-        <div class="category-filter-container" id="category-filters"></div>
-
         <div class="products" id="product-list"></div>
 
         <div class="checkout" id="cart">
@@ -124,7 +90,7 @@
 
     <section class="about-section" id="about">
         <h2>ກ່ຽວກັບພວກເຮົາ</h2>
-        <p>NOVA ແມ່ນຮ້ານຂາຍເກີບສຳລັບເກີບທຳມະດา, ເກີບກິລາ, ເກີບແລ່ນ, ເກີບເຕະບານ, ເກີບທາງການ ແລະ ເກີບລຸ້ນຈຳກັດ.</p>
+        <p>NOVA ແມ່ນຮ້ານຂາຍເກີບສຳລັບເກີບທຳມະດາ, ເກີບກິລາ, ເກີບແລ່ນ, ເກີບເຕະບານ, ເກີບທາງການ ແລະ ເກີບລຸ້ນຈຳກັດ.</p>
     </section>
 
     <template id="category-template">
