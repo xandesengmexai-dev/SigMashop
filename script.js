@@ -109,7 +109,12 @@ function addToCart(product, sizeSelect) {
 
 function renderUI() {
     const subtotal = basket.reduce((sum, item) => sum + item.price, 0);
-    const discount = promoCode === "LAOS2024" ? Math.round(subtotal * 0.1) : 0;
+    
+    // ดึงจำนวนสิทธิ์การใช้ล่าสุดมาตรวจสอบราคาสุทธิ
+    let usedCount = parseInt(localStorage.getItem('promo_LAOS2024_used_count')) || 0;
+    
+    // เงื่อนไขคำนวณส่วนลด: โค้ดต้องถูกต้อง และ สิทธิ์ต้องใช้รวมกันยังไม่เกิน 50 ครั้ง
+    const discount = (promoCode === "LAOS2024" && usedCount < 50) ? Math.round(subtotal * 0.1) : 0;
     const total = Math.max(subtotal - discount, 0);
 
     document.getElementById('bag-count-text').innerText = `${basket.length} ລາຍການ`;
@@ -121,12 +126,30 @@ function renderUI() {
 }
 
 function applyPromoCode() {
+    // ดึงค่า, ตัดช่องว่าง และแปลงเป็นตัวพิมพ์ใหญ่ทันทีเพื่อรองรับทั้งพิมพ์เล็ก/พิมพ์ใหญ่
     const code = document.getElementById('promoCode').value.trim().toUpperCase();
     const promoMessage = document.getElementById('promo-message');
 
-    promoCode = code === "LAOS2024" ? code : "";
-    promoMessage.textContent = code && !promoCode ? "ລະຫັດສ່ວນຫຼຸດບໍ່ຖືກຕ້ອງ." : (promoCode ? "LAOS2024: ຫຼຸດ 10%" : "");
-    promoMessage.className = promoCode ? "success" : "error";
+    // โหลดจำนวนสิทธิ์การใช้ล่าสุดจากหน่วยความจำ
+    let usedCount = parseInt(localStorage.getItem('promo_LAOS2024_used_count')) || 0;
+
+    if (code === "LAOS2024") {
+        // ตรวจสอบว่าสิทธิ์เต็ม 50 ครั้งหรือยัง
+        if (usedCount >= 50) {
+            promoCode = "";
+            promoMessage.textContent = "ລະຫັດນີ້ຖືກນຳໃຊ້ຄົບ 50 ຄັ້ງແລ້ວ (ສິດເຕັມແລ້ວ).";
+            promoMessage.className = "error";
+        } else {
+            promoCode = code;
+            const remaining = 50 - usedCount;
+            promoMessage.textContent = `LAOS2024: ຫຼຸດ 10% (ເຫຼືອສິດນຳໃຊ້ ${remaining} ຄັ້ງ)`;
+            promoMessage.className = "success";
+        }
+    } else {
+        promoCode = "";
+        promoMessage.textContent = code ? "ລະຫັດສ່ວນຫຼຸດບໍ່ຖືກຕ້ອງ." : "";
+        promoMessage.className = "error";
+    }
     renderUI();
 }
 
@@ -197,6 +220,18 @@ function confirmPurchase() {
     if (!name || !tel || basket.length === 0) {
         alert("ກະລຸນາໃສ່ຂໍ້ມູນໃຫ້ຄົບ ແລະ ເລືອກສິນຄ້າ.");
         return;
+    }
+
+    // หากมีการใช้โค้ดส่วนลด และสิทธิ์ยังไม่เต็ม ให้ระบบหักโควตาออก 1 สิทธิ์ลงฐานข้อมูลจำลอง
+    if (promoCode === "LAOS2024") {
+        let usedCount = parseInt(localStorage.getItem('promo_LAOS2024_used_count')) || 0;
+        if (usedCount < 50) {
+            localStorage.setItem('promo_LAOS2024_used_count', usedCount + 1);
+        } else {
+            alert("ຂໍອະໄພ, ສິດລະຫັດສ່ວນຫຼຸດນີ້ເຕັມແລ້ວໃນລະຫວ່າງການເຮັດລາຍການ.");
+            renderUI();
+            return;
+        }
     }
 
     const orderData = {
