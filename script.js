@@ -27,7 +27,7 @@ const productsData = [
     { id: 31, category: "Formal Shoes", name: "Alberto Torresi", price: 710000, img: "https://www.albertotorresi.com/cdn/shop/files/DSC_1033.jpg?v=1754295384" },
     { id: 32, category: "Formal Shoes", name: "Bacca Bucci VICTORIA", price: 860000, img: "https://baccabucci.com/cdn/shop/products/MG_7666-min_1e99cd5a-e357-41a4-8048-56df9c9b30cc.jpg?v=1774854994&width=1800" },
     { id: 13, category: "Limited Edition", name: "GOLDCITY D409", price: 25000000, img: "https://mpics-cdn-acc.mgronline.com/pics/Images/564000003615401.JPEG.webp" },
-    { id: 14, category: "Limited Edition", name: "PUMA", price: 28000000, img: "https://stylebyattractions.com/cdn/shop/files/WhatsAppImage2024-09-10at2.30.29PM_1.jpg?v=1725965615" },
+    { id: 14, category: "Limited Edition", name: "GOLDCOOL", price: 28000000, img: "https://www.facebook.com/photo/?fbid=3008982849200755&set=a.652147236939692&__cft__[0]=AZZASrTUSN93MPOGRjOO8Sh1a692vKqEN7hX9VbCBoVZOFLEINbvj_yLMvbYAqzeh3-4EwSFcCHWdX_vxRFRy7QhUpUO73-wmwxwG59tUK92sfGnUw6eBOFEt5YLSis598dwNCApTmBychWd8wkI4CjN&__tn__=EH-R" },
     { id: 33, category: "Limited Edition", name: "YAMADA water Guard", price: 340000, img: "https://img.th.my-best.com/product_images/dcb2d26a5a90323f69af0a373c16e09e.jpeg?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=90419311f3eed356c8cc96a184280a27" }
 ];
 
