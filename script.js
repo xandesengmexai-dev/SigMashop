@@ -29,7 +29,6 @@ const productsData = [
     { id: 13, category: "Limited Edition", name: "GOLDCITY D409", price: 25000000, img: "https://mpics-cdn-acc.mgronline.com/pics/Images/564000003615401.JPEG.webp" },
     { id: 14, category: "Limited Edition", name: "Orange Shoes", price: 28000000, img: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/orange-shoes-limited-edition-design-template-86c1f2c416e6cdf5ad782564beb61d4f_screen.jpg?ts=1688110542" },
     { id: 33, category: "Limited Edition", name: "YAMADA water Guard", price: 340000, img: "https://img.th.my-best.com/product_images/dcb2d26a5a90323f69af0a373c16e09e.jpeg?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=90419311f3eed356c8cc96a184280a27" }
-    { id: 37, category: "Limited Edition", name: "Men Fila Ray Trace", price: 340000, img: "https://cdn-aws.fashdirect.com/webadmin/items/website/6251033/image_2_224707294515_1.web" },
 ];
 
 const shoeSizes = [36, 37, 38, 39, 40, 41, 42, 43, 44, 45];
